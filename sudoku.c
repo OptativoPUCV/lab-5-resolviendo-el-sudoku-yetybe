@@ -138,13 +138,12 @@ List* get_adj_nodes(Node* n)
                 {
                     Node *newState = copy(n);
                     newState->sudo[k][j] = num;
-                    if(!is_valid(newState)) 
+                    if(is_valid(newState)) 
                     {
-                      free(newState);
-                      continue;
+                      pushBack(list, newState);
                     }
                     else{
-                      pushBack(list, newState);
+                      free(newState);
                     }
                     
                 } 
