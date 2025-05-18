@@ -128,22 +128,23 @@ List* get_adj_nodes(Node* n)
         {
             if (n->sudo[k][j] == 0)
             {
+                // Solo expandimos la PRIMERA celda vacía
                 for (int num = 1; num <= 9; num++)
                 {
                     Node *newState = copy(n);
                     newState->sudo[k][j] = num;
-                    if(is_valid(newState)) 
-                    {
-                      pushBack(list, newState);
-                    }
-                    else{
-                      free(newState);
-                    }
-                    
-                } 
-            } 
+
+                    if (is_valid(newState))
+                        pushBack(list, newState);
+                    else
+                        free(newState);
+                }
+
+                // ¡Importante! Salir después de la primera expansión
+                return list;
+            }
         }
-    } 
+    }
 
     return list;
 }
