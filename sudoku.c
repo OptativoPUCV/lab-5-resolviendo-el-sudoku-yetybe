@@ -81,6 +81,7 @@ int is_valid(Node* n)
     {
       return 0;  
     }
+  }
 
     for (int i = 0 ; i < 9 ; i ++)
     {
@@ -113,7 +114,7 @@ int is_valid(Node* n)
     }
 
     
-  }
+  
   return 1;
 }
 
