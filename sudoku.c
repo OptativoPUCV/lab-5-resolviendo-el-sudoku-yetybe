@@ -181,10 +181,9 @@ Node* DFS(Node* initial, int* cont)
       push(pila , adj);
       (*cont)++;
       adj = next(listaAdy);
-
     }
     free(listaAdy);
-    free(adj);
+    free(n);
   }
   return NULL;
 }
