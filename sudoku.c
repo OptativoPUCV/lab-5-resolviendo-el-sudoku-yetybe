@@ -128,7 +128,6 @@ List* get_adj_nodes(Node* n)
         {
             if (n->sudo[k][j] == 0)
             {
-                // Solo expandimos la PRIMERA celda vacía
                 for (int num = 1; num <= 9; num++)
                 {
                     Node *newState = copy(n);
@@ -139,8 +138,6 @@ List* get_adj_nodes(Node* n)
                     else
                         free(newState);
                 }
-
-                // ¡Importante! Salir después de la primera expansión
                 return list;
             }
         }
@@ -153,8 +150,17 @@ List* get_adj_nodes(Node* n)
 
 
 
-int is_final(Node* n){
-    return 0;
+int is_final(Node* n)
+{
+  
+  for (int i = 0 ; i < 9 ; i ++)
+  {
+    for(int j = 0 ; j < 9 ; j ++)
+    {
+      if (n->sudo[i][j] != 0) return 0;
+    }
+  }
+  return 1;
 }
 
 Node* DFS(Node* initial, int* cont){
