@@ -143,7 +143,10 @@ List* get_adj_nodes(Node* n)
                       free(newState);
                       continue;
                     }
-                    pushBack(list, newState);
+                    else{
+                      pushBack(list, newState);
+                    }
+                    
                 } 
             } 
         }
