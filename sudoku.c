@@ -43,34 +43,105 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int is_valid(Node* n){
 
-    return 1;
+
+int obtenerSubmatriz(int fila, int columna) 
+{
+  return 3 * (fila / 3) + (columna / 3);
+}
+
+
+void fillSubMatriz(Node* n, int k, int subMatriz[3][3]) 
+{
+    for (int p = 0; p < 9; p++) {
+        int i = 3 * (k / 3) + (p / 3);
+        int j = 3 * (k % 3) + (p % 3);
+        subMatriz[p / 3][p % 3] = n->sudo[i][j];
+    }
+}
+
+int isValidMatriz(int subMatriz[3][3], int seen[10]) 
+{
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            int num = subMatriz[i][j];
+            if (num != 0) {
+                if (seen[num]) return 0;  
+                seen[num] = 1;            
+            }
+        }
+    }
+    return 1;  
+}
+
+
+int is_valid(Node* n)
+{
+  for (int k = 0 ; k < 9 ; k ++)
+  {
+    int subMatriz[3][3];
+    fillSubMatriz(n , k , subMatriz);
+    int seen[10] = {0};
+    isValidMatriz(subMatriz , seen );
+    if (!isValidMatriz(subMatriz, seen)) 
+    {
+      return 0;  
+    }
+
+    for (int i = 0 ; i < 9 ; i ++)
+    {
+      int seen[10] = {0};
+      for(int j = 0 ; j < 9 ; j ++)
+      {
+        int num = n->sudo[i][j];
+        if (num != 0)
+        {
+          if(seen[num]) return 0;
+          seen[num] = 1;
+
+        }
+      }
+
+    for (int j = 0 ; j < 9 ; j ++)
+    {
+      int seen[10] = {0};
+      for(int j = 0 ; j < 9 ; j ++)
+      {
+        int num = n->sudo[i][j];
+        if (num != 0)
+        {
+          if(seen[num]) return 0;
+          seen[num] = 1;  
+
+        }
+      }
+    }
+
+    } 
+  }
+  return 1;
 }
 
 
 List* get_adj_nodes(Node* n)
 {
-  List* list=createList();
+    List* list = createList();
 
-  for (int k = 0 ; k < 9 ; k ++)
-  {
-    for (int j = 0 ; j < 9 ; j ++)
+    for (int k = 0; k < 9; k++)
     {
-      if (n->sudo[k][j] == 0)
-      {
-        for (int num = 1 ; num <= 9 ; num++)
+        for (int j = 0; j < 9; j++)
         {
-          Node *newState = copy(n);
-          newState->sudo[k][j] = num;
-          pushBack(list , newState );
-      }
-
-      }
-    }
-
-  }
-    
+            if (n->sudo[k][j] == 0)
+            {
+                for (int num = 1; num <= 9; num++)
+                {
+                    Node *newState = copy(n);
+                    newState->sudo[k][j] = num;
+                    pushBack(list, newState);
+                } 
+            } 
+        }
+    } 
 
     return list;
 }
