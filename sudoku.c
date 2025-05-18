@@ -54,12 +54,15 @@ void fillSubMatriz(Node* n, int k, int subMatriz[3][3])
 
 int isValidMatriz(int subMatriz[3][3], int seen[10]) 
 {
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
+    for (int i = 0; i < 3; i++) 
+    {
+        for (int j = 0; j < 3; j++) 
+        {
             int num = subMatriz[i][j];
-            if (num != 0) {
-                if (seen[num]) return 0;  
-                seen[num] = 1;            
+            if (num != 0) 
+            {
+              if (seen[num]) return 0;  
+              seen[num] = 1;            
             }
         }
     }
