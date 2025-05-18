@@ -54,6 +54,7 @@ List* get_adj_nodes(Node* n)
   List* list=createList();
 
   for (int k = 0 ; k < 9 ; k ++)
+  {
     for (int j = 0 ; j < 9 ; j ++)
     {
       if (n->sudo[k][j] == 0)
@@ -67,6 +68,9 @@ List* get_adj_nodes(Node* n)
 
       }
     }
+
+  }
+    
 
     return list;
 }
