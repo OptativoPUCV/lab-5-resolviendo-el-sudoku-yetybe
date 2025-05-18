@@ -71,7 +71,7 @@ int isValidMatriz(int subMatriz[3][3], int seen[10])
 
 int is_valid(Node* n)
 {
-  for (int k = 0 ; k <= 9 ; k ++)
+  for (int k = 0 ; k < 9 ; k ++)
   {
     int subMatriz[3][3];
     fillSubMatriz(n , k , subMatriz);
