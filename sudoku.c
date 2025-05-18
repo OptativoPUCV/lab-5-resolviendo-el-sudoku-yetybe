@@ -82,8 +82,8 @@ int is_valid(Node* n)
     int subMatriz[3][3];
     fillSubMatriz(n , k , subMatriz);
     int seen[10] = {0};
-    isValidMatriz(subMatriz , seen );
-    if (!isValidMatriz(subMatriz, seen)) 
+    int flag = isValidMatriz(subMatriz , seen );
+    if (flag != 1) 
     {
       return 0;  
     }
@@ -101,11 +101,12 @@ int is_valid(Node* n)
 
         }
       }
+    }
 
     for (int j = 0 ; j < 9 ; j ++)
     {
       int seen[10] = {0};
-      for(int j = 0 ; j < 9 ; j ++)
+      for(int i = 0 ; i < 9 ; i ++)
       {
         int num = n->sudo[i][j];
         if (num != 0)
@@ -117,7 +118,7 @@ int is_valid(Node* n)
       }
     }
 
-    } 
+    
   }
   return 1;
 }
