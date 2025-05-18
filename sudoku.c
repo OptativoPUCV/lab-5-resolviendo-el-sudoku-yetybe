@@ -66,9 +66,9 @@ int isValidMatriz(int subMatriz[3][3], int seen[10])
     return 1;  
 }
 
-/*int is_valid(Node* n)
+int is_valid(Node* n)
 {
-  for (int k = 0 ; k < 9 ; k ++)
+  for (int k = 0 ; k <= 9 ; k ++)
   {
     int subMatriz[3][3];
     fillSubMatriz(n , k , subMatriz);
@@ -113,42 +113,6 @@ int isValidMatriz(int subMatriz[3][3], int seen[10])
   }
   return 1;
 }
-*/
-
-
-
-
-
-int is_valid(Node* n) {
-    // 1. Validar submatrices
-    for (int k = 0; k < 9; k++) {
-        int subMatriz[3][3];
-        fillSubMatriz(n, k, subMatriz);
-        int seen[10] = {0};
-        if (!isValidMatriz(subMatriz, seen)) return 0;
-    }
-
-    // 2. Validar filas
-    for (int i = 0; i < 9; i++) {
-        int seen[10] = {0};
-        for (int j = 0; j < 9; j++) {
-            int num = n->sudo[i][j];
-            if (num != 0 && seen[num]++) return 0;
-        }
-    }
-
-    // 3. Validar columnas
-    for (int j = 0; j < 9; j++) {
-        int seen[10] = {0};
-        for (int i = 0; i < 9; i++) {
-            int num = n->sudo[i][j];
-            if (num != 0 && seen[num]++) return 0;
-        }
-    }
-
-    return 1;
-}
-
 
 List* get_adj_nodes(Node* n)
 {
